@@ -1,5 +1,8 @@
+import subprocess
 
 numberWedges=3
+
+program='C:/Program Files/Thinkbox/Deadline10/bin/deadlinecommand.exe'
 
 fileName=hou.hipFile.basename()
 
@@ -40,3 +43,6 @@ for i in range (0,numberWedges):
     with open( jobSubmitFile, "w" ) as fileHandle:
         fileHandle.write( "Name=%s - /out/SIm_River" %(fileName[0]))
         fileHandle.write( "Plugin=Houdini")
+        
+    arguments=('%s %s %s'%(os.path.join(deadlineRepo, "%s_plugin_%d.job"), os.path.join(deadlineRepo, "%s_info_%d.job"), fileSave )))
+    subprocess.call([program, arguments])
