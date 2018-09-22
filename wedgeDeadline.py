@@ -69,21 +69,27 @@ fileName=hou.hipFile.basename()
 
 fileName=fileName.rsplit('.',1)
 
+#\\ryzen01\repository\jobs\wedge\
 
-deadlineRepo='R:/jobs/wedge'
-#deadlineRepo=os.path.normpath(deadlineRepo)
+deadlineRepo=os.path.join('//Ryzen01','repository','jobs','wedge')
+deadlineRepo=os.path.normpath(deadlineRepo)
 
 #print fileName
+#print deadlineRepo
 
 for i in range (0,numberWedges):
 
-    fileSave='%s%s_%s%s' %('R:/jobs/wedge/',fileName[0],i,'.hip')
+    #fileSave=os.path.join(deadlineRepo,%sfileName[0],'%s'%i,'.hip')
+    fileSave=os.path.join(deadlineRepo,'%s.%s.hip'%(fileName[0],i))
+    #print fileSave
     
-    fileSave=os.path.normpath(fileSave)
+    #break
+    
+    #fileSave=os.path.normpath(fileSave)
     hou.putenv('WEDGE','%d'%(i))
     
     
-    print fileSave
+    #print fileSave
     if not os.path.exists(deadlineRepo):
         os.makedirs(deadlineRepo)
     
@@ -92,7 +98,7 @@ for i in range (0,numberWedges):
     jobPluginFile = os.path.join(deadlineRepo, "%s_plugin_%d.job") %(fileName[0],i)
     
     with open( jobPluginFile, "w" ) as fileHandle:
-        fileHandle.write( "SceneFile=%s_%s\n" %(fileSave,i) )
+        fileHandle.write( "SceneFile=%s\n" %(fileSave) )
         fileHandle.write( "OutputDriver=/out/SIm_River\n" )
         fileHandle.write( "IgnoreInputs=0\n" )
         fileHandle.write( "Version=16.5\n" )
