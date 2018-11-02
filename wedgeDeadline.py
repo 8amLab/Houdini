@@ -4,7 +4,7 @@ import subprocess
 
 import os
 
-numberWedges=3
+numberWedges=10
 
 def GetDeadlineCommand():
     deadlineBin = ""
