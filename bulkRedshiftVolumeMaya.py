@@ -10,4 +10,9 @@ for file in glob.glob("*.vdb"):
     filename="%s/%s" % (path,file)
     volumeNode.fileName.set(filename)
     volumeNode.displayMode.set(1)
-    volumeNode.rename(test)
+    transformVol = pm.listRelatives( volumeNode, parent=True, type="transform" )
+    transformVol= transformVol[0]
+    file=file.split(".")
+    file=file[0]
+    pm.rename(transformVol,file)
+    #break
